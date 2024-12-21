@@ -5,13 +5,13 @@ const openai = new OpenAI();
 
 export default async function getPostText() {
   
-    const response = await axios.get('https://www.onthisday.com/today/canadian-history.php');
+    const response = await axios.get('https://www.onthisday.com');
     const users = response.data;
 
 
  const stream = await openai.chat.completions.create({
   model: "gpt-4o",
-  messages: [{ role: "user", content: "write a tweet with maximum two bullet points from " + response.data + " within 250 characters. Include only hashtags #History #Canada #OnThisDay #CanadaHistory"}],
+  messages: [{ role: "user", content: "write a tweet with maximum three bullet points from " + response.data + " within 260 characters. Include only hashtags #History #World #OnThisDay"}],
   stream: true,
 });
 var tweetString = '';
